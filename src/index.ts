@@ -18,6 +18,13 @@ app.get("/", async (req, res) => {
   res.send(`Hello, World! The time from the DB is ${rows[0].now}`);
 });
 
+
+app.get("/performers", async (req, res) => {
+  const { rows } = await pool.query("SELECT * FROM performers");
+  res.writeHead(200, { 'Content-Type': 'application/json' })
+  res.end(JSON.stringify(rows))
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
