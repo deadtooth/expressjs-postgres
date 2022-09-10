@@ -20,7 +20,7 @@ app.get("/", async (req, res) => {
 
 
 app.get("/performers", async (req, res) => {
-  const { rows } = await pool.query("SELECT * FROM performers");
+  const { rows } = await pool.query("SELECT * FROM performers ORDER BY id");
   res.writeHead(200, { 'Content-Type': 'application/json' })
   res.end(JSON.stringify(rows))
 });
