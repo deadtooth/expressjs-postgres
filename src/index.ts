@@ -25,6 +25,14 @@ app.get("/performers", async (req, res) => {
   res.end(JSON.stringify(rows))
 });
 
+
+app.get("/lineup/:id", async (req, res) => {
+  const eventId = req.params.id;
+  const { rows } = await pool.query(`SELECT * FROM performers WHERE event_id = ${eventId} ORDER BY id`);
+  res.writeHead(200, { 'Content-Type': 'application/json' })
+  res.end(JSON.stringify(rows))
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
