@@ -27,7 +27,7 @@ app.get("/events", async (req, res) => {
   res.end(JSON.stringify(rows))
 });
 
-app.get("/events/:id", async (req, res) => {
+app.get("/event/:id", async (req, res) => {
   const eventId = req.params.id;
   const { rows } = await pool.query(`SELECT * FROM events WHERE id = ${eventId}`);
   res.writeHead(200, { 'Content-Type': 'application/json' })
